@@ -3,7 +3,8 @@ package formatter;
 import util.DurationFormat;
 
 public class ReadableDurationFormatter {
-    private static final int COMMA_STRING_SIZE = 2;
+
+    private static final int COMMA_SIZE = 2;
 
     public static String format(int seconds) {
         if (seconds == 0) {
@@ -18,9 +19,9 @@ public class ReadableDurationFormatter {
 
     private static StringBuilder finalizeDurationFormat(StringBuilder result) {
         int startIndexOfLastComma = result.toString().lastIndexOf(", ");
-        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_STRING_SIZE, "");
+        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, "");
         startIndexOfLastComma = result.toString().lastIndexOf(", ");
-        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_STRING_SIZE, " and ");
+        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, " and ");
         return result;
     }
 
