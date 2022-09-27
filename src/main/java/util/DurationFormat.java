@@ -44,7 +44,4 @@ public class DurationFormat {
         return second;
     }
 
-    public boolean isZero() {
-        return year == 0 && day == 0 && hour == 0 && minute == 0 && second == 0;
-    }
 }

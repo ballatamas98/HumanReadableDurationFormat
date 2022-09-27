@@ -3,24 +3,24 @@ package formatter;
 import util.DurationFormat;
 
 public class ReadableDurationFormatter {
+    private static final int COMMA_STRING_SIZE = 2;
 
     public static String format(int seconds) {
         if (seconds == 0) {
             return "now";
-        }else {
+        } else {
             DurationFormat number = new DurationFormat(seconds);
             StringBuilder result = new StringBuilder();
 
-            finalizeDurationFormat(buildTemporaryDurationFormat(number, result));
-            return result.toString();
+            return finalizeDurationFormat(buildTemporaryDurationFormat(number, result)).toString();
         }
     }
 
     private static StringBuilder finalizeDurationFormat(StringBuilder result) {
         int startIndexOfLastComma = result.toString().lastIndexOf(", ");
-        result.replace(startIndexOfLastComma, startIndexOfLastComma + 1, "");
+        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_STRING_SIZE, "");
         startIndexOfLastComma = result.toString().lastIndexOf(", ");
-        result.replace(startIndexOfLastComma, startIndexOfLastComma + 1, " and ");
+        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_STRING_SIZE, " and ");
         return result;
     }
 
