@@ -20,8 +20,10 @@ public class ReadableDurationFormatter {
     private static StringBuilder finalizeDurationFormat(StringBuilder result) {
         int startIndexOfLastComma = result.toString().lastIndexOf(", ");
         result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, "");
-        startIndexOfLastComma = result.toString().lastIndexOf(", ");
-        result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, " and ");
+//        if(result.toString().contains(", ")){
+            startIndexOfLastComma = result.toString().lastIndexOf(", ");
+            result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, " and ");
+//        }
         return result;
     }
 
