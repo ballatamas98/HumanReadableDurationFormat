@@ -1,4 +1,4 @@
-package util;
+package formatter;
 
 public class DurationFormat {
     private static final int YEAR_IN_SECONDS = 31_556_000;
@@ -13,15 +13,16 @@ public class DurationFormat {
     private int second;
 
     public DurationFormat(int seconds) {
-        this.year = seconds / YEAR_IN_SECONDS;
-        seconds -= this.year * YEAR_IN_SECONDS;
-        this.day = seconds / DAY_IN_SECONDS;
-        seconds -= this.day * DAY_IN_SECONDS;
-        this.hour = seconds / HOUR_IN_SECONDS;
-        seconds -= this.hour * HOUR_IN_SECONDS;
-        this.minute = seconds / MINUTE_IN_SECONDS;
-        seconds -= this.minute * MINUTE_IN_SECONDS;
-        this.second = seconds;
+        int remainingSeconds = seconds;
+        this.year = remainingSeconds / YEAR_IN_SECONDS;
+        remainingSeconds -= this.year * YEAR_IN_SECONDS;
+        this.day = remainingSeconds / DAY_IN_SECONDS;
+        remainingSeconds -= this.day * DAY_IN_SECONDS;
+        this.hour = remainingSeconds / HOUR_IN_SECONDS;
+        remainingSeconds -= this.hour * HOUR_IN_SECONDS;
+        this.minute = remainingSeconds / MINUTE_IN_SECONDS;
+        remainingSeconds -= this.minute * MINUTE_IN_SECONDS;
+        this.second = remainingSeconds;
     }
 
     public int getYear() {

@@ -1,7 +1,5 @@
 package formatter;
 
-import util.DurationFormat;
-
 public class ReadableDurationFormatter {
 
     private static final int COMMA_SIZE = 2;
@@ -11,23 +9,23 @@ public class ReadableDurationFormatter {
             return "now";
         } else {
             DurationFormat number = new DurationFormat(seconds);
-            StringBuilder result = new StringBuilder();
 
-            return finalizeDurationFormat(buildTemporaryDurationFormat(number, result)).toString();
+            return finalizeDurationFormat(buildTemporaryDurationFormat(number));
         }
     }
 
-    private static StringBuilder finalizeDurationFormat(StringBuilder result) {
+    private static String finalizeDurationFormat(StringBuilder result) {
         int startIndexOfLastComma = result.toString().lastIndexOf(", ");
         result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, "");
-        if(result.toString().contains(", ")){
+        if (result.toString().contains(", ")) {
             startIndexOfLastComma = result.toString().lastIndexOf(", ");
             result.replace(startIndexOfLastComma, startIndexOfLastComma + COMMA_SIZE, " and ");
         }
-        return result;
+        return result.toString();
     }
 
-    private static StringBuilder buildTemporaryDurationFormat(DurationFormat number, StringBuilder result) {
+    private static StringBuilder buildTemporaryDurationFormat(DurationFormat number) {
+        StringBuilder result = new StringBuilder();
         if (number.getYear() > 0) {
             result.append(number.getYear()).append(" year").append(plural(number.getYear())).append(", ");
         }
